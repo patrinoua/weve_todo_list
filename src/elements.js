@@ -1,14 +1,23 @@
 import styled from 'styled-components'
 
-export const ListContainer = styled.div`
+const colors = {
+  backgroundColor: '#e1e6eb',
+  textGrey: '#afbdcb',
+  textBlack: '#354352',
+  textGreen: '#5eb77f',
+  highlightGrey: '#eff2f6',
+  boxShadow: ' rgba(0, 0, 0, 0.25)',
+}
+
+export const AppContainer = styled.div`
   width: 650px;
-  height: 800px;
-  background: #e1e6eb;
+  height: 757px;
+  background: ${colors.backgroundColor};
 `
-export const Header = styled.h1`
-  font-size: 1.5em;
-  color: #354352;
-  padding-top: 50px;
+export const Heading = styled.h1`
+  font-size: 34px;
+  color: ${colors.textBlack};
+  margin: 50px;
 `
 export const SearchContainer = styled.div`
   width: 100%;
@@ -20,14 +29,21 @@ export const SearchBar = styled.input`
   width: 400px;
   height: 30px;
   border: none;
-  font-size: 1em;
+  font-size: 14px;
+  color: ${colors.textBlack};
+  font-weight: 500;
   &:focus {
     outline: none;
+  }
+  &::placeholder {
+    color: ${colors.textGrey};
+    font-size: 14px;
+    font-weight: 500;
   }
 `
 export const Container = styled.div`
   width: 530px;
-  min-height: 60px;
+  min-height: 58px;
   border-radius: 5px;
   paddidng: 3px;
   overflow: hidden;
@@ -35,19 +51,19 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px ${colors.boxShadow};
   background: white;
 `
 export const TableLine = styled.tr`
   background: white;
   padding: 10px 20px;
-  height: 60px;
+  height: 58px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
 
   &:nth-child(even) {
-    background: #eff2f6;
+    background: ${colors.highlightGrey};
   }
 `
 export const Table = styled.table`
@@ -63,42 +79,36 @@ export const InputLine = styled.div`
 `
 export const TableContentBox = styled.td`
   height: 30px;
-  font-size: 0.65em;
+  font-size: 15px;
   width: 400px;
   display: flex;
   align-items: center;
   margin-right: 30px;
 `
-export const TextContainer = styled.div``
+export const TextContainer = styled.div`
+  font-weight: 500;
+  color: ${colors.textBlack};
+`
 export const DoneTextContainer = styled.div`
-  color: #5eb77f;
+  color: ${colors.textGreen};
   text-decoration: line-through;
+  font-weight: 500;
 `
 export const ContentBox = styled.div`
   height: 30px;
-  font-size: 0.7em;
-  color: #5eb77f;
+  font-size: 12px;
   width: 400px;
   display: flex;
   align-items: center;
   margin-right: 30px;
 `
 
-export const ClearAllContainer = styled.div`
-  height: 200px;
-  font-size: 0.6em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 export const Icon = styled.div`
   width: 20px;
   height: 20px;
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
-  // background: black;
-  // margin: 10px 10px;
   &:hover {
     cursor: pointer;
   }
@@ -108,24 +118,50 @@ export const LeftIcon = styled(Icon)`
 `
 export const PencilIcon = styled(LeftIcon)`
   background-image: url('./pencil.svg');
+  filter: invert(85%) sepia(13%) saturate(319%) hue-rotate(170deg)
+    brightness(86%) contrast(90%);
 `
 export const DoneIcon = styled(LeftIcon)`
   background-image: url('./done.svg');
+  filter: invert(67%) sepia(68%) saturate(292%) hue-rotate(89deg)
+    brightness(84%) contrast(83%);
 `
 export const UndoneIcon = styled(LeftIcon)`
   background-image: url('./undone.svg');
 `
 export const TrashIcon = styled.td`
   background-image: url('./trash.svg');
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   margin-right: 10px;
 `
+export const ClearAllContainer = styled.div`
+  height: 150px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.textGrey};
+  font-weight: 700;
+  text-transform: uppercase;
+`
+export const ClearAll = styled.div`
+  width: 100px;
+  height: 30px;
+  align-items: center;
+  display: flex;
+`
+
 export const EmptyPrompt = styled.div`
   text-align: left;
-  padding-left: 30px;
-  font-size: 0.8em;
+  padding-left: 60px;
+  font-size: 12px;
+  font-weight: 500;
+  color: ${colors.textGrey};
 `
 export const Regular = styled.div`
-  font-size: 0.8em;
+  font-size: 14px;
+`
+export const EmptySpace = styled.div`
+  height: 53px;
 `

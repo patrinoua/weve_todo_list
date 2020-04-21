@@ -9,8 +9,8 @@ import {
   TableContentBox,
   DoneTextContainer,
   TextContainer,
-  ListContainer,
-  Header,
+  AppContainer,
+  Heading,
   SearchContainer,
   Container,
   InputLine,
@@ -18,8 +18,10 @@ import {
   SearchBar,
   Table,
   ClearAllContainer,
+  ClearAll,
   Regular,
   EmptyPrompt,
+  EmptySpace,
 } from './elements'
 
 function App() {
@@ -38,9 +40,8 @@ function App() {
     newItems.splice(itemIndex, 1)
     setItems(newItems)
   }
-  const trashAllHandler = () => {
-    setItems([])
-  }
+  const trashAllHandler = () => setItems([])
+
   const tickHandler = (id) => {
     const newItems = [...items]
     const itemIndex = newItems.findIndex((item) => item.id === id)
@@ -53,16 +54,14 @@ function App() {
     }
   }
   const inputHandler = (e) => {
-    if (e.target.value) {
-      const newItem = {
-        id: items.length + 1,
-        done: false,
-        text: e.target.value,
-      }
-      const newItems = [...items, newItem]
-      setItems(newItems)
-      setText('')
+    const newItem = {
+      id: items.length + 1,
+      done: false,
+      text: e.target.value,
     }
+    const newItems = [...items, newItem]
+    setItems(newItems)
+    setText('')
   }
   const listItem = ({ id, done, text }) => (
     <TableLine key={id}>
@@ -81,48 +80,45 @@ function App() {
   )
   return (
     <div className="App">
-      <header className="App-header">
-        <ListContainer>
-          <Header>REACT TO-DO</Header>
-          <SearchContainer>
-            <Container>
-              <InputLine>
-                <PencilIcon />
-                <ContentBox>
-                  <SearchBar
-                    placeholder="What needs to be accomplished?"
-                    onBlur={(e) => inputHandler(e)}
-                    onKeyUp={(e) => handleKeyDown(e)}
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                  />
-                </ContentBox>
-              </InputLine>
-            </Container>
-            <br />
-            <Container>
-              {items.length === 0 && (
-                <EmptyPrompt>
-                  <Regular>Add some things to your to do list!</Regular>
-                </EmptyPrompt>
-              )}
-              <Table>
-                <tbody>{items.map((item) => listItem(item))}</tbody>
-              </Table>
-            </Container>
-          </SearchContainer>
-          <ClearAllContainer>
-            {items.length ? (
-              <>
-                <TrashIcon onClick={() => trashAllHandler()} />
-                <Regular>Clear all</Regular>
-              </>
-            ) : (
-              ''
+      <AppContainer>
+        <Heading>REACT TO-DO</Heading>
+        <SearchContainer>
+          <Container>
+            <InputLine>
+              <PencilIcon />
+              <ContentBox>
+                <SearchBar
+                  placeholder="What needs to be accomplished?"
+                  onKeyUp={(e) => handleKeyDown(e)}
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+              </ContentBox>
+            </InputLine>
+          </Container>
+          <EmptySpace />
+          <Container>
+            {items.length === 0 && (
+              <EmptyPrompt>
+                <Regular>Add some things to your to do list!</Regular>
+              </EmptyPrompt>
             )}
+            <Table>
+              <tbody>{items.map((item) => listItem(item))}</tbody>
+            </Table>
+          </Container>
+        </SearchContainer>
+        {items.length ? (
+          <ClearAllContainer>
+            <ClearAll onClick={() => trashAllHandler()}>
+              <TrashIcon />
+              Clear all
+            </ClearAll>
           </ClearAllContainer>
-        </ListContainer>
-      </header>
+        ) : (
+          ''
+        )}
+      </AppContainer>
     </div>
   )
 }
