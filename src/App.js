@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import styled from 'styled-components'
 
@@ -114,24 +114,39 @@ const SearchBar = styled.input`
 `
 
 function App() {
-  const results = [
+  const [items, setItems] = useState([
     { id: 1, done: true, text: 'Get up early' },
     { id: 2, done: true, text: 'Do some meditation' },
     { id: 3, done: false, text: 'eat a healthy breakfast' },
-    { id: 3, done: false, text: 'Drink plenty of water' },
-    { id: 3, done: false, text: 'Exercise' },
-    { id: 3, done: false, text: 'Have fun' },
-  ]
+    { id: 4, done: false, text: 'Drink plenty of water' },
+    { id: 5, done: false, text: 'Exercise' },
+    { id: 6, done: false, text: 'Have fun' },
+  ])
 
+  const trashHandler = (id) => {
+    const newItems = [...items]
+    const itemIndex = newItems.findIndex((item) => item.id === id)
+    newItems.splice(itemIndex, 1)
+    setItems(newItems)
+  }
   const listItem = ({ id, done, text }) => (
-    <TableLine>
-      <td onClick={() => console.log('whoop', id)}>
+    <TableLine key={id}>
+      <td
+        onClick={() => {
+          // setItems([...items, (items.id = id ?
+          //   {
+          //     id: id, done: !done, text: text
+          //   }
+          //   ])
+          // console.log('whoop', id, items)
+        }}
+      >
         {done ? <DoneIcon /> : <UndoneIcon />}
       </td>
       <TableContentBox>
         <TextContainer>{text}</TextContainer>
       </TableContentBox>
-      <TrashIcon onClick={() => console.log('trash', id)} />
+      <TrashIcon onClick={() => trashHandler(id)} />
     </TableLine>
   )
   return (
@@ -151,7 +166,7 @@ function App() {
             <br />
             <Container>
               <Table>
-                <tbody>{results.map((item) => listItem(item))}</tbody>
+                <tbody>{items.map((item) => listItem(item))}</tbody>
               </Table>
             </Container>
           </SearchContainer>
