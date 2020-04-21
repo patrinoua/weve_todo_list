@@ -129,18 +129,15 @@ function App() {
     newItems.splice(itemIndex, 1)
     setItems(newItems)
   }
+  const tickHandler = (id) => {
+    const newItems = [...items]
+    const itemIndex = newItems.findIndex((item) => item.id === id)
+    newItems[itemIndex].done = !newItems[itemIndex].done
+    setItems(newItems)
+  }
   const listItem = ({ id, done, text }) => (
     <TableLine key={id}>
-      <td
-        onClick={() => {
-          // setItems([...items, (items.id = id ?
-          //   {
-          //     id: id, done: !done, text: text
-          //   }
-          //   ])
-          // console.log('whoop', id, items)
-        }}
-      >
+      <td onClick={() => tickHandler(id)}>
         {done ? <DoneIcon /> : <UndoneIcon />}
       </td>
       <TableContentBox>
