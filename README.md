@@ -1,6 +1,6 @@
 A simple todo list made with React, using Hooks and Styled Components
 
-![Screenshot](https://github.com/patrinoua/weve_todo_list/blob/master/README.md)
+![Screenshot](https://github.com/patrinoua/weve_todo_list/blob/master/React-to-do.png)
 ---------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
