@@ -1,4 +1,4 @@
-A simple todo list made with React, using Hooks and Styled Components
+A simple todo list made with React, using Hooks and Styled Components.
 
 ![Screenshot](https://github.com/patrinoua/weve_todo_list/blob/master/React-to-do.png)
 ---------
